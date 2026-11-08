@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shurda Café</title>
+  <meta name="description" content="Shurda Café: a free-play slots game starring Daki. Coins have no cash value.">
+  <link rel="icon" href="assets/java-jack.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-action="home" aria-label="Back to the café">
+      <span class="brand-face"><img src="assets/java-jack.png" alt=""></span>
+      <span class="brand-name">Shurda Café</span>
+    </button>
+    <div class="pill coins" title="Your coins">
+      <span class="coin-icon" aria-hidden="true"></span>
+      <span id="coin-count">0</span>
+    </div>
+    <div class="level" title="Your level">
+      <span class="level-badge" id="level-num">1</span>
+      <span class="xp-track"><span class="xp-fill" id="xp-fill"></span></span>
+    </div>
+    <button class="pill bonus" id="bonus-btn" data-action="bonus">
+      <span class="bonus-icon" aria-hidden="true">☕</span>
+      <span id="bonus-label">Free coins</span>
+    </button>
+    <button class="icon-btn" data-action="settings" aria-label="Settings"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#2a1a12" d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.2h-4l-.4 2.7a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.4 2.7h4l.4-2.7a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1 1 13 8.5a3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button>
+  </header>
+
+  <main>
+    <!-- Lobby -->
+    <section id="lobby" class="view">
+      <div class="hero">
+        <img class="hero-jack" src="assets/java-jack.png" alt="Daki, running with a coffee">
+        <div class="hero-copy">
+          <h1>Shurda<br><span>Café</span></h1>
+          <p class="bubble" id="greeting">Mornin'! Grab a machine, the coffee's on me.</p>
+        </div>
+      </div>
+      <h2 class="section-title">Machines</h2>
+      <div class="machine-grid" id="machine-grid"></div>
+      <p class="fineprint">Free play only. Coins have no cash value and can't be bought or cashed out.</p>
+    </section>
+
+    <!-- Machine -->
+    <section id="machine" class="view" hidden>
+      <div class="machine-head">
+        <button class="icon-btn" data-action="home" aria-label="Back to the café">‹</button>
+        <h2 id="machine-name">Machine</h2>
+        <button class="icon-btn" data-action="paytable" aria-label="Paytable and rules">i</button>
+      </div>
+
+      <div class="machine-layout">
+      <aside class="daki-panel" id="daki-panel" aria-label="Daki and his coffee meter"></aside>
+      <div class="machine-main">
+      <div class="cabinet">
+        <div class="fs-banner" id="fs-banner" hidden>
+          FREE REFILLS <b id="fs-left">0</b> left · won <b id="fs-won">0</b>
+        </div>
+        <div class="reels-wrap">
+          <div class="reels" id="reels"></div>
+          <svg class="lines" id="lines" viewBox="0 0 500 300" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+        <div class="win-display" id="win-display" aria-live="polite">
+          <span class="win-label">WIN</span>
+          <span class="win-amount" id="win-amount">0</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="bet">
+          <span class="bet-label">BET</span>
+          <div class="bet-row">
+            <button class="round-btn" id="bet-down" data-action="bet-down" aria-label="Lower bet">−</button>
+            <span class="bet-value" id="bet-value">10</span>
+            <button class="round-btn" id="bet-up" data-action="bet-up" aria-label="Raise bet">+</button>
+          </div>
+          <button class="chip-btn" id="bet-max" data-action="bet-max">MAX BET</button>
+        </div>
+
+        <button class="spin-btn" id="spin-btn" data-action="spin">SPIN</button>
+
+        <div class="auto">
+          <span class="bet-label">AUTO</span>
+          <div class="auto-row">
+            <button class="chip-btn" data-action="auto" data-n="10">10</button>
+            <button class="chip-btn" data-action="auto" data-n="25">25</button>
+            <button class="chip-btn" data-action="auto" data-n="50">50</button>
+          </div>
+          <span class="auto-status" id="auto-status"></span>
+        </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-root" id="modal-root" hidden></div>
+  <div class="bigwin" id="bigwin" hidden>
+    <div class="bigwin-rays" aria-hidden="true"></div>
+    <img class="bigwin-jack" src="assets/java-jack.png" alt="">
+    <div class="bigwin-text">
+      <div class="bigwin-tier" id="bigwin-tier">BIG BREW!</div>
+      <div class="bigwin-amount" id="bigwin-amount">0</div>
+      <div class="bigwin-hint">tap to collect</div>
+    </div>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

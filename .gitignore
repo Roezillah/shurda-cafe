@@ -1,0 +1,5 @@
+# raw art, research notes and local-only files stay out of the repo
+
+art/
+replica/
+.DS_Store

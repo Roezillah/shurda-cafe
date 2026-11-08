@@ -1,0 +1,1 @@
+{"name":"java-jack-slots","private":true,"type":"module","scripts":{"sim":"node tools/sim.js"}}
