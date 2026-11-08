@@ -2,6 +2,8 @@
 
 A free-play slots game for the browser, starring Daki. Coins have no cash value.
 
+**Play it online: https://roezillah.github.io/shurda-cafe/**
+
 ## Play
 
 ```bash
